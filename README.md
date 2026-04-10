@@ -1,5 +1,4 @@
 # ProfitLens
-## A Business Point-of-Sale Insight System
 
 ProfitLens is a C++ project built around a simple but practical Point-of-Sale workflow with a strong focus on business logic, data handling, and basic sales insight generation. The project is intentionally designed to keep the user interface minimal so that the core logic remains clear & manageable.
 
