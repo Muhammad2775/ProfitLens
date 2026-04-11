@@ -8,8 +8,6 @@ ProfitLens is a C++ project built around a simple but practical Point-of-Sale (P
 
 The purpose of ProfitLens is to simulate a real-world retail transaction system capable of managing sales, calculating totals, storing transactional data, and generating meaningful business insights.
 
-Rather than focusing on UI complexity, the project emphasizes the internal architecture and logic that power a POS system, making it ideal for demonstrating Object-Oriented Programming principles in a practical context.
-
 ## Core Features
 
 ### Transaction Management
