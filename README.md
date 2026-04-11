@@ -1,141 +1,190 @@
 # ProfitLens
 
-ProfitLens is a C++ project built around a simple but practical Point-of-Sale workflow with a strong focus on business logic, data handling, and basic sales insight generation. The project is intentionally designed to keep the user interface minimal so that the core logic remains clear & manageable.
+## A Business Point-of-Sale Insight System
+
+ProfitLens is a C++ project built around a simple but practical Point-of-Sale (POS) workflow, with a strong focus on business logic, data handling, and sales insight generation. The system is intentionally designed with a minimal graphical interface so that the core logic remains clear, structured, and easy to evaluate.
 
 ## Project Purpose
-The purpose of ProfitLens is to simulate a small business sales system that can manage items in a bill, calculate totals, complete transactions, and preserve transaction data for later use. Instead of spending effort on a complex interface, the project emphasizes the internal logic that powers a real point-of-sale system.
 
-This makes the project suitable for demonstrating core OOP concepts while still reflecting a realistic business problem.
+The purpose of ProfitLens is to simulate a real-world retail transaction system capable of managing sales, calculating totals, storing transactional data, and generating meaningful business insights.
+
+Rather than focusing on UI complexity, the project emphasizes the internal architecture and logic that power a POS system, making it ideal for demonstrating Object-Oriented Programming principles in a practical context.
 
 ## Core Features
-- Add products to a current bill or cart
-- Update item quantity
-- Remove items from the bill
-- Clear the current transaction
-- Calculate total sale value
-- Calculate total cost and profit
-- Complete a sale and store the transaction
-- Save and load records through file handling
-- Present a minimal SFML-based GUI Interface
+
+### Transaction Management
+
+* Add products to a current bill or cart
+* Update item quantity
+* Remove items from the cart
+* Clear the current transaction
+* Calculate total sale value
+* Calculate total cost and profit
+* Complete a sale and store the transaction
+
+### Order Tracking
+
+* Each transaction is assigned a unique **Order ID**
+* Each order is recorded with a **timestamp**
+* Retrieve a complete summary of any order using its ID
+
+### File Persistence & Data Retrieval
+
+* Load an existing CSV file (acts as the system database)
+* Store all transactions in a structured CSV format
+* Retrieve specific records using Order ID (testing & validation supported)
+* Data persists across program executions
+
+### Analytics Engine
+
+#### Order-Level Analytics
+
+* Retrieve a specific order using Order ID
+* Display all items within the order
+* Calculate total revenue, cost, and profit
+
+#### Business-Level Analytics
+
+* Calculate total revenue across all orders
+* Calculate total cost
+* Calculate total profit
+* Determine total number of orders
+
+## Data Model
+
+All transactions are stored in a unified CSV format:
+
+```
+OrderID, Timestamp, ProductName, Quantity, CostPrice, SellingPrice, Subtotal
+```
+
+### Example:
+
+```
+1001, 2026-04-10 14:32, Milk, 2, 100, 120, 240
+1001, 2026-04-10 14:32, Bread, 1, 60, 80, 80
+1002, 2026-04-10 15:10, Eggs, 12, 15, 20, 240
+```
 
 ## Design Philosophy
-ProfitLens is intentionally kept simple on the surface and structured beneath the surface. The goal is not to build a visually heavy application, but to build a clean and explainable system where the logic is easy to follow.
 
-The interface is expected to remain basic and functional. The main value of the project comes from how the data is handled, how the transaction flow is managed, and how the system computes meaningful business results from simple inputs.
+ProfitLens is intentionally kept simple on the surface and structured beneath the surface. The objective is not to build a visually complex application, but to design a system where logic, data flow, and architecture are clear and explainable.
 
-<!-- Commented out for now may change later
-## OOP Concepts Used
-- **Encapsulation**: each class keeps its own data and exposes only the required operations
-- **Abstraction**: the UI interacts with high-level operations instead of internal details
-- **Composition**: larger parts of the system are built by combining smaller classes
-- **Inheritance**: can be applied where product categorization is needed
-- **Modularity**: each major responsibility is kept in its own module
--->
+The interface remains minimal and functional, while the system focuses on accurate data handling, transaction flow, and meaningful business computations.
 
 ## Main Components
-### Product
-Stores the basic information of an item, such as its identity, name, cost, and selling price.
 
-### SaleItem
-Represents one entry in the current bill and stores the selected product along with its quantity.
+### Product
+
+Stores the basic information of an item, including name, cost price, and selling price.
+
+### Cart
+
+Represents the current transaction. It stores selected products, manages quantities, and prepares data for checkout.
 
 ### StoreManager
-Acts as the central logic hub of the system. It manages the current cart, applies changes to items, and handles the overall sales flow.
 
-### Analytics
-Calculates business-related values such as revenue, total cost, and profit.
+Acts as the central logic controller:
+
+* Manages the cart
+* Assigns Order IDs
+* Generates timestamps
+* Handles transaction completion
 
 ### FileManager
-Handles saving and loading of sales data so that records can persist between sessions.
+
+Responsible for:
+
+* Loading existing CSV data
+* Writing transaction data to CSV
+* Retrieving order-specific records
+
+### Analytics
+
+Processes stored data to generate:
+
+* Order-level summaries
+* Business-level performance metrics
 
 ### UI
-Provides the minimal graphical layer for user interaction and connects the interface with the business logic.
+
+Provides a minimal graphical interface using SFML and connects user interaction with system logic.
 
 ## Project Structure
-The project is organized into a clear folder hierarchy to separate source code, headers, and documentation.
 
-### Main Project Folder
-- **ProfitLens**: Root folder of the project
+The project follows a structured directory layout to separate concerns and improve maintainability.
 
-### Program Files
-Contains all source code used by the application.
-
-### Header Files
-Split into two categories:
-- **Internal Headers**: project-created headers used for the application’s own classes and logic
-- **External Headers**: headers for SFML and any other external APIs used by the project
-
-### Source Files
-Contains the implementation files for the project modules, arranged into separate folders according to their purpose.
-
-### Documentation
-Contains the project documentation, including this README and any other supporting documents created during development.
-
-## Project Structure
-    ProfitLens/
-    ├─ Program Files/
-    │  ├─ Header Files/
-    │  │  ├─ Internal Headers/
-    │  │  │  ├─ Product/
-    │  │  │  │  └─ Product.hpp
-    │  │  │  ├─ Cart/
-    │  │  │  │  └─ SaleItem.hpp
-    │  │  │  ├─ StoreManager/
-    │  │  │  │  └─ StoreManager.hpp
-    │  │  │  ├─ Analytics/
-    │  │  │  │  └─ Analytics.hpp
-    │  │  │  ├─ FileManager/
-    │  │  │  │  └─ FileManager.hpp
-    │  │  │  └─ GUI/
-    │  │  │     └─ GUI.hpp
-    │  │  └─ External Headers/
-    │  │     └─ (SFML and other dependencies)
-    │  ├─ Source Files/
-    │  │  ├─ Product/
-    │  │  │  └─ Product.cpp
-    │  │  ├─ Cart/
-    │  │  │  └─ SaleItem.cpp
-    │  │  ├─ StoreManager/
-    │  │  │  └─ StoreManager.cpp
-    │  │  ├─ Analytics/
-    │  │  │  └─ Analytics.cpp
-    │  │  ├─ FileManager/
-    │  │  │  └─ FileManager.cpp
-    │  │  └─ GUI/
-    │  │     └─ GUI.cpp
-    │  └─ ProfitLens.cpp
-    └─ Documentation/
-       └─ ReadMe.md
+```
+ProfitLens/
+├─ Program Files/
+│  ├─ Header Files/
+│  │  ├─ Internal Headers/
+│  │  │  ├─ Product/
+│  │  │  │  └─ Product.hpp
+│  │  │  ├─ Cart/
+│  │  │  │  └─ Cart.hpp
+│  │  │  ├─ StoreManager/
+│  │  │  │  └─ StoreManager.hpp
+│  │  │  ├─ Analytics/
+│  │  │  │  └─ Analytics.hpp
+│  │  │  ├─ FileManager/
+│  │  │  │  └─ FileManager.hpp
+│  │  │  └─ GUI/
+│  │  │     └─ GUI.hpp
+│  │  └─ External Headers/
+│  │     └─ SFML/
+│  │        ├─ include/
+│  │        ├─ lib/
+│  │        └─ bin/
+│  │
+│  ├─ Source Files/
+│  │  ├─ Product/
+│  │  │  └─ Product.cpp
+│  │  ├─ Cart/
+│  │  │  └─ Cart.cpp
+│  │  ├─ StoreManager/
+│  │  │  └─ StoreManager.cpp
+│  │  ├─ Analytics/
+│  │  │  └─ Analytics.cpp
+│  │  ├─ FileManager/
+│  │  │  └─ FileManager.cpp
+│  │  └─ GUI/
+│  │     └─ GUI.cpp
+│  │
+│  └─ ProfitLens.cpp
+│
+├─ Documentation/
+│  └─ README.md
+```
 
 ## Planned Module Breakdown
-The project is organized around the following functional areas:
-- Product Management
-- Cart/Transaction Handling
-- Sales Calculation
-- Profit & Revenue Analysis
-- File-based Persistence
-- Minimal Graphical Presentation
+
+The system is divided into the following functional areas:
+
+* Product Management
+* Cart / Transaction Handling
+* Sales Calculation
+* Profit & Revenue Analysis
+* File-based Persistence & Retrieval
+* Minimal Graphical Presentation
 
 ## Intended Workflow
-1. The user enters or selects a product.
-2. The product is added to the current bill.
-3. Quantity and item details can be adjusted if needed.
-4. The system calculates the bill total and related business values.
-5. When the sale is completed, the transaction is stored.
-6. The stored data can later be used for review and analysis.
+
+1. The user selects or enters a product
+2. The product is added to the cart
+3. Quantities can be modified or items removed
+4. The system calculates totals dynamically
+5. The user completes the transaction
+6. The system assigns an Order ID and timestamp
+7. The transaction is saved to CSV
+8. The system can load and retrieve specific records for analysis or testing
 
 ## Development Notes
-- The project will be developed in Visual Studio 2026
-- The codebase will use `.cpp` and `.hpp` files
-- Business logic will be kept separate from the graphical layer
-- The README and other documentation will remain inside the Documentation folder
-- SFML-related external headers will be managed separately in the external dependency area
 
-<!-- 
-## Expected Outcome
-By the end of the project, ProfitLens should function as a clean and understandable point-of-sale system that can:
-- Manage transaction items
-- Calculate totals and profit
-- Preserve sales records
-- Demonstrate Solid Object-Oriented Design
--->
+* Developed using Visual Studio 2026
+* Uses `.cpp` and `.hpp` files
+* Business logic is fully separated from the UI layer
+* SFML is used for minimal graphical rendering
+* External dependencies are isolated within the project structure
+* Documentation is maintained in the `Documentation/` directory
+* Panels for user facing and admin facing could be added later as it is not yet an intended feature
