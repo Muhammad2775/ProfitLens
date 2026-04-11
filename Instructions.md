@@ -85,7 +85,7 @@ The required SFML `.dll` files for Debug mode are already provided in the reposi
 
 Ensure that the following files exist in:
 ```
-ProfitLens/x64/Debug/
+x64/Debug/
 ```
 
 Required DLLs:
