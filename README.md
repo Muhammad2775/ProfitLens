@@ -150,6 +150,11 @@ ProfitLens/
 │  │     └─ GUI.cpp
 │  │
 │  └─ ProfitLens.cpp
+├─ System Database
+│
+│  └─ Database.csv
+├─ Test Cases
+│  └─ ReplayTest.csv
 │
 ├─ Documentation/
 │  └─ README.md
