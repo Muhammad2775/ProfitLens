@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ProfitLens.vcxproj" Id="0cb6a382-6b3f-4fcc-9abd-46e3b77c4cfb" />
+</Solution>
