@@ -23,11 +23,7 @@ Or download as ZIP and extract.
 
 ## 2. Open the Project in Visual Studio
 
-1. Navigate to:
-   ```
-   ProfitLens/Program Files/
-   ```
-2. Open the `.sln` file
+1. Open the `.sln` file
 
 If no solution file is present:
 
