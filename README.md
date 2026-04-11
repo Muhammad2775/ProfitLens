@@ -86,8 +86,8 @@ Contains the project documentation, including this README and any other supporti
     │  │  │  │  └─ Analytics.hpp
     │  │  │  ├─ FileManager/
     │  │  │  │  └─ FileManager.hpp
-    │  │  │  └─ UI/
-    │  │  │     └─ UI.hpp
+    │  │  │  └─ GUI/
+    │  │  │     └─ GUI.hpp
     │  │  └─ External Headers/
     │  │     └─ (SFML and other dependencies)
     │  ├─ Source Files/
@@ -101,8 +101,8 @@ Contains the project documentation, including this README and any other supporti
     │  │  │  └─ Analytics.cpp
     │  │  ├─ FileManager/
     │  │  │  └─ FileManager.cpp
-    │  │  └─ UI/
-    │  │     └─ UI.cpp
+    │  │  └─ GUI/
+    │  │     └─ GUI.cpp
     │  └─ ProfitLens.cpp
     └─ Documentation/
        └─ ReadMe.md
